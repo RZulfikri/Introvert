@@ -28,26 +28,37 @@ class ViewController: UIViewController {
      "Saya menikmati bekerja yang memungkinkan saya untuk menyelaminya lebih dalam dengan sedikit interupsi.",
      "Saya menyukai pesta ulangtahun kecil dengan beberapa orang dan anggota keluarga saja.",
      "Orang-orang menggambarkan diri saya sebagai orang yang sangat lembut ketika berbicara.",
+     "Saya cenderung tidak membicarakan pekerjaan saya dengan orang lain sampai pekerjaan itu benar-benar selesai.",
+     "Saya tidak menyukai konflik.",
+     "Saya berusaha untuk melakukan pekerjaan sebaik mungkin.",
+     "Saya cenderung berfikir sebelum berbicara.",
+     "Energi saya merasa terkuras setelah melakukan sesuatu, bahkan ketika menikmati diri sendiri.",
+     "Saya sering membiarkan panggilan melalui voicemail.",
+     "Jika harus memilih, saya lebih suka menikmati akhir pekan dengan tidak beraktivitas apapun dibandingkan dengan setumpuk jadwal.",
+     "Saya tidak menikmati melakukan aktivitas yang berjejal.",
+     "Saya bisa berkonsentrasi dengan mudah.",
+     "Dalam situasi kelas, saya cenderung lebih suka kuliah dibandingkan seminar.",
     ]
     
     let colors: [[CGFloat]] = [
-    [99,73,255],
-    [232,134,100],
-    [206,122,255],
-    [100,198,232],
-    [255,197,61],
-    [232,84,132],
-    [105,110,255],
-    [255,195,92],
-    [84,232,170],
-    [58,170,232],
+        [99,73,255],
+        [232,134,100],
+        [206,122,255],
+        [100,198,232],
+        [255,197,61],
+        [232,84,132],
+        [105,110,255],
+        [255,195,92],
+        [84,232,170],
+        [58,170,232],
     ]
-
+    
+    let maxQuestion = 10
     
     var yesAnswer = 0
     var noAnswer = 0
     var index = 0
-    
+    var leftQuestion: [String] = []
                 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +68,7 @@ class ViewController: UIViewController {
     
     
     func prepareScreen() {
+        leftQuestion = questions
         
         index = 0
         yesAnswer = 0
@@ -90,12 +102,18 @@ class ViewController: UIViewController {
         ulangiBtn.layer.shadowRadius = 1
         ulangiBtn.layer.shadowOpacity = 0.2
         
+        getQuestion()
+    }
+    
+    func getQuestion() {
+        let index = Int(arc4random_uniform(UInt32(leftQuestion.count)))
         mainLabel.text = questions[index]
+        leftQuestion.remove(at: index)
     }
     
     func changeQuestions() {
         index += 1
-        mainLabel.text = questions[index]
+        getQuestion()
         changeBackground(colorIndex: index)
     }
     
@@ -128,7 +146,7 @@ class ViewController: UIViewController {
     
     @IBAction func onPressYes(_ sender: UIButton) {
         yesAnswer += 1
-        if (index < (questions.count - 1)) {
+        if (index < maxQuestion - 1) {
             changeQuestions()
         } else {
             calculateResult()
@@ -137,7 +155,7 @@ class ViewController: UIViewController {
     
     @IBAction func onPressNo(_ sender: UIButton) {
         noAnswer += 1
-        if (index < (questions.count - 1)) {
+        if (index < maxQuestion - 1) {
             changeQuestions()
         } else {
             calculateResult()
