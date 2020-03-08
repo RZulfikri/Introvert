@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4445BF162415340A00A636DC /* Components in Resources */ = {isa = PBXBuildFile; fileRef = 4445BF152415340A00A636DC /* Components */; };
 		44E7DB84240E3DF900873D51 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E7DB83240E3DF900873D51 /* AppDelegate.swift */; };
 		44E7DB86240E3DF900873D51 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E7DB85240E3DF900873D51 /* SceneDelegate.swift */; };
 		44E7DB88240E3DF900873D51 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E7DB87240E3DF900873D51 /* ViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4445BF152415340A00A636DC /* Components */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Components; sourceTree = "<group>"; };
 		44E7DB80240E3DF900873D51 /* Introvert.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Introvert.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44E7DB83240E3DF900873D51 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		44E7DB85240E3DF900873D51 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -56,6 +58,7 @@
 		44E7DB82240E3DF900873D51 /* Introvert */ = {
 			isa = PBXGroup;
 			children = (
+				4445BF152415340A00A636DC /* Components */,
 				44E7DB83240E3DF900873D51 /* AppDelegate.swift */,
 				44E7DB85240E3DF900873D51 /* SceneDelegate.swift */,
 				44E7DB87240E3DF900873D51 /* ViewController.swift */,
@@ -125,6 +128,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4445BF162415340A00A636DC /* Components in Resources */,
 				44E7DB90240E3DFA00873D51 /* LaunchScreen.storyboard in Resources */,
 				44E7DB8D240E3DFA00873D51 /* Assets.xcassets in Resources */,
 				44E7DB8B240E3DF900873D51 /* Main.storyboard in Resources */,
