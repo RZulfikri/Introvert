@@ -6,6 +6,10 @@
 //  Copyright © 2020 Rahmat Zulfikri. All rights reserved.
 //
 
+/**
+ UNUSED FILE, RESEARCH / EXPORATION PURPOSE
+ */
+
 import UIKit
 
 @IBDesignable class QuestionView: UIView {
