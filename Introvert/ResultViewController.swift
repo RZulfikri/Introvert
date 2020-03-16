@@ -40,7 +40,7 @@ class ResultViewController: UIViewController {
         case .introvert:
             imageResult.image = #imageLiteral(resourceName: "introvert")
             labelResult.text = "Introvert"
-            labelInfo.text = "Apa itu Introver?"
+            labelInfo.text = "Apa itu Introvert?"
             break
         case .extrovert:
             imageResult.image = #imageLiteral(resourceName: "ambivert")
