@@ -40,16 +40,30 @@ class ViewController: UIViewController {
     ]
     
     let colors: [[CGFloat]] = [
-        [99,73,255],
-        [232,134,100],
-        [206,122,255],
-        [100,198,232],
-        [255,197,61],
-        [232,84,132],
-        [105,110,255],
-        [255,195,92],
-        [84,232,170],
-        [58,170,232],
+        [99, 73, 255, 100],
+        [203, 146, 232, 91],
+        [255, 173, 231, 100],
+        [232, 152, 146, 91],
+        [166, 150, 255, 100],
+        [101, 74, 255, 100],
+        [83, 75, 128, 50],
+        [81, 59, 204, 80],
+        [101, 74, 255, 100],
+        [123, 99, 255, 100],
+        [90, 63, 255, 100],
+        [255, 119, 99, 100],
+        [74, 143, 255, 100],
+        [199,146,232, 100],
+        [206,122,255, 100],
+        [100,198,232, 100],
+        [255,197,61, 100],
+        [232,84,132, 100],
+        [105,110,255, 100],
+        [255,195,92, 100],
+        [166,146,232, 100],
+        [58,170,232, 100],
+        [255,173,231, 100],
+        [167,161,255, 100],
     ]
     
     let maxQuestion = 10
@@ -57,12 +71,18 @@ class ViewController: UIViewController {
     var yesAnswer = 0
     var noAnswer = 0
     var index = 0
-    var leftQuestion: [String] = []
+    
+    var activeQuestions: [String] = []
+    var activeColors: [[CGFloat]] = []
                 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         prepareScreen()
+        prepareQuestion()
+        
+        changeBackground(colorIndex: index)
+        changeQuestions(questionIndex: index)
     }
     
 //    override func viewWillDisappear(_ animated: Bool) {
@@ -76,14 +96,10 @@ class ViewController: UIViewController {
     }
     
     func prepareScreen() {
-        leftQuestion = questions
-        
         index = 0
         yesAnswer = 0
         noAnswer = 0
         
-        changeBackground(colorIndex: index)
-
         yesBtn.layer.cornerRadius = 10
         noBtn.layer.cornerRadius = 10
         
@@ -96,24 +112,37 @@ class ViewController: UIViewController {
         yesBtn.layer.shadowOffset = CGSize(width: 1, height: 2)
         yesBtn.layer.shadowRadius = 1
         yesBtn.layer.shadowOpacity = 0.2
+    }
+    
+    func prepareQuestion() {
+        var leftQuestions = questions
+        var leftColors = colors
         
-        getQuestion()
+        for _ in 1...maxQuestion {
+            let questionIndex = Int.random(in: 0..<leftQuestions.count)
+            let colorIndex = Int.random(in: 0..<leftColors.count)
+            
+            activeQuestions.append(leftQuestions[questionIndex])
+            activeColors.append(leftColors[colorIndex])
+            
+            leftQuestions.remove(at: questionIndex)
+            leftColors.remove(at: colorIndex)
+        }
     }
     
-    func getQuestion() {
-        let index = Int(arc4random_uniform(UInt32(leftQuestion.count)))
-        mainLabel.text = questions[index]
-        leftQuestion.remove(at: index)
-    }
     
-    func changeQuestions() {
+    func nextQuestion() {
         index += 1
-        getQuestion()
         changeBackground(colorIndex: index)
+        changeQuestions(questionIndex: index)
     }
     
     func changeBackground(colorIndex: Int) {
-        mainView.layer.backgroundColor = UIColor(red: colors[colorIndex][0]/255, green: colors[colorIndex][1]/255, blue: colors[colorIndex][2]/255, alpha: 1).cgColor
+        mainView.layer.backgroundColor = UIColor(red: activeColors[colorIndex][0]/255, green: activeColors[colorIndex][1]/255, blue: activeColors[colorIndex][2]/255, alpha: activeColors[colorIndex][3]/100).cgColor
+    }
+    
+    func changeQuestions(questionIndex: Int) {
+        mainLabel.text = activeQuestions[questionIndex]
     }
     
     func moveToResult() {
@@ -124,7 +153,7 @@ class ViewController: UIViewController {
     @IBAction func onPressYes(_ sender: UIButton) {
         yesAnswer += 1
         if (index < maxQuestion - 1) {
-            changeQuestions()
+            nextQuestion()
         } else {
             moveToResult()
         }
@@ -133,7 +162,7 @@ class ViewController: UIViewController {
     @IBAction func onPressNo(_ sender: UIButton) {
         noAnswer += 1
         if (index < maxQuestion - 1) {
-            changeQuestions()
+            nextQuestion()
         } else {
             moveToResult()
         }
