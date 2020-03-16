@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4429E516241A273D0014D164 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4429E515241A273D0014D164 /* ResultViewController.swift */; };
+		4429E518241A3CDC0014D164 /* NewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4429E517241A3CDC0014D164 /* NewViewController.swift */; };
+		4429E51A241A3FF60014D164 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4429E519241A3FF60014D164 /* NavigationController.swift */; };
+		442B04A4241FAEDC006C11F7 /* EnumCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442B04A3241FAEDC006C11F7 /* EnumCollection.swift */; };
 		4445BF162415340A00A636DC /* Components in Resources */ = {isa = PBXBuildFile; fileRef = 4445BF152415340A00A636DC /* Components */; };
 		44E7DB84240E3DF900873D51 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E7DB83240E3DF900873D51 /* AppDelegate.swift */; };
 		44E7DB86240E3DF900873D51 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E7DB85240E3DF900873D51 /* SceneDelegate.swift */; };
@@ -17,6 +21,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4429E515241A273D0014D164 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
+		4429E517241A3CDC0014D164 /* NewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewViewController.swift; sourceTree = "<group>"; };
+		4429E519241A3FF60014D164 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		442B04A3241FAEDC006C11F7 /* EnumCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumCollection.swift; sourceTree = "<group>"; };
 		4445BF152415340A00A636DC /* Components */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Components; sourceTree = "<group>"; };
 		44E7DB80240E3DF900873D51 /* Introvert.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Introvert.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44E7DB83240E3DF900873D51 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +74,10 @@
 				44E7DB8C240E3DFA00873D51 /* Assets.xcassets */,
 				44E7DB8E240E3DFA00873D51 /* LaunchScreen.storyboard */,
 				44E7DB91240E3DFA00873D51 /* Info.plist */,
+				4429E515241A273D0014D164 /* ResultViewController.swift */,
+				4429E517241A3CDC0014D164 /* NewViewController.swift */,
+				4429E519241A3FF60014D164 /* NavigationController.swift */,
+				442B04A3241FAEDC006C11F7 /* EnumCollection.swift */,
 			);
 			path = Introvert;
 			sourceTree = "<group>";
@@ -143,8 +155,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				44E7DB88240E3DF900873D51 /* ViewController.swift in Sources */,
+				4429E51A241A3FF60014D164 /* NavigationController.swift in Sources */,
 				44E7DB84240E3DF900873D51 /* AppDelegate.swift in Sources */,
+				4429E518241A3CDC0014D164 /* NewViewController.swift in Sources */,
+				442B04A4241FAEDC006C11F7 /* EnumCollection.swift in Sources */,
 				44E7DB86240E3DF900873D51 /* SceneDelegate.swift in Sources */,
+				4429E516241A273D0014D164 /* ResultViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

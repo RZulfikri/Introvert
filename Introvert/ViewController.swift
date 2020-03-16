@@ -11,11 +11,10 @@ import UIKit
 class ViewController: UIViewController {
     @IBOutlet weak var yesBtn: UIButton!
     @IBOutlet weak var noBtn: UIButton!
-    @IBOutlet weak var ulangiBtn: UIButton!
     @IBOutlet weak var mainLabel: UILabel!
-    @IBOutlet weak var imageResult: UIImageView!
-    @IBOutlet weak var resultLabel: UILabel!
     @IBOutlet weak var mainView: UIView!
+    
+    let enumCollection = EnumCollection()
     
     let questions = [
      "Saya lebih menyukai percakapan berhadapan satu lawan satu dalam sebuah kegiatan berkelompok.",
@@ -66,6 +65,15 @@ class ViewController: UIViewController {
         prepareScreen()
     }
     
+//    override func viewWillDisappear(_ animated: Bool) {
+//        self.navigationController?.setNavigationBarHidden(false, animated: animated);
+//        super.viewWillDisappear(animated)
+//    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
     
     func prepareScreen() {
         leftQuestion = questions
@@ -78,14 +86,6 @@ class ViewController: UIViewController {
 
         yesBtn.layer.cornerRadius = 10
         noBtn.layer.cornerRadius = 10
-        ulangiBtn.layer.cornerRadius = 10
-        yesBtn.isHidden = false
-        noBtn.isHidden = false
-        mainLabel.isHidden = false
-        
-        imageResult.isHidden = true
-        ulangiBtn.isHidden = true
-        resultLabel.isHidden = true
         
         noBtn.layer.shadowColor = UIColor.black.cgColor
         noBtn.layer.shadowOffset = CGSize(width: 1, height: 2)
@@ -96,11 +96,6 @@ class ViewController: UIViewController {
         yesBtn.layer.shadowOffset = CGSize(width: 1, height: 2)
         yesBtn.layer.shadowRadius = 1
         yesBtn.layer.shadowOpacity = 0.2
-        
-        ulangiBtn.layer.shadowColor = UIColor.black.cgColor
-        ulangiBtn.layer.shadowOffset = CGSize(width: 1, height: 2)
-        ulangiBtn.layer.shadowRadius = 1
-        ulangiBtn.layer.shadowOpacity = 0.2
         
         getQuestion()
     }
@@ -120,36 +115,18 @@ class ViewController: UIViewController {
     func changeBackground(colorIndex: Int) {
         mainView.layer.backgroundColor = UIColor(red: colors[colorIndex][0]/255, green: colors[colorIndex][1]/255, blue: colors[colorIndex][2]/255, alpha: 1).cgColor
     }
- 
-    func calculateResult() {
-        ulangiBtn.isHidden = false
-        yesBtn.isHidden = true
-        noBtn.isHidden = true
-        mainLabel.isHidden = true
-        
-        if (yesAnswer > noAnswer) {
-            resultLabel.text = "\(yesAnswer * 10)%\nIntovert"
-            imageResult.image = #imageLiteral(resourceName: "introvert")
-        } else if (yesAnswer == noAnswer){
-            resultLabel.text = "\(noAnswer * 10)%\nIntovert - Extrovert"
-            imageResult.image = #imageLiteral(resourceName: "ambivert")
-        } else {
-            resultLabel.text = "\(noAnswer * 10)%\nExtrovert"
-            imageResult.image = #imageLiteral(resourceName: "extrovert")
-        }
-        
-        changeBackground(colorIndex: 0)
-
-        imageResult.isHidden = false
-        resultLabel.isHidden = false
+    
+    func moveToResult() {
+        performSegue(withIdentifier: "resultSegue", sender: self)
     }
+        
     
     @IBAction func onPressYes(_ sender: UIButton) {
         yesAnswer += 1
         if (index < maxQuestion - 1) {
             changeQuestions()
         } else {
-            calculateResult()
+            moveToResult()
         }
     }
     
@@ -158,12 +135,28 @@ class ViewController: UIViewController {
         if (index < maxQuestion - 1) {
             changeQuestions()
         } else {
-            calculateResult()
+            moveToResult()
         }
     }
     
-    @IBAction func ulangi(_ sender: UIButton) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationView = segue.destination as? ResultViewController
+        
+        if (yesAnswer == noAnswer) {
+            destinationView?.resultType = .ambivert
+        } else {
+            if (yesAnswer > noAnswer) {
+                destinationView?.resultType = .introvert
+            } else {
+                destinationView?.resultType = .extrovert
+            }
+        }
+    }
+    
+    
+    @IBAction func unwindToMainSegue(segue:UIStoryboardSegue) {
         prepareScreen()
     }
+
 }
 
