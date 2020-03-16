@@ -79,10 +79,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         prepareScreen()
-        prepareQuestion()
-        
-        changeBackground(colorIndex: index)
-        changeQuestions(questionIndex: index)
     }
     
 //    override func viewWillDisappear(_ animated: Bool) {
@@ -112,6 +108,11 @@ class ViewController: UIViewController {
         yesBtn.layer.shadowOffset = CGSize(width: 1, height: 2)
         yesBtn.layer.shadowRadius = 1
         yesBtn.layer.shadowOpacity = 0.2
+        
+        prepareQuestion()
+        
+        changeBackground(colorIndex: index)
+        changeQuestions(questionIndex: index)
     }
     
     func prepareQuestion() {
